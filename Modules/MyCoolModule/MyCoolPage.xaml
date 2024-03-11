@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MvvmSample.Modules.MyCoolModule"
+             x:Class="MvvmSample.Modules.MyCoolModule.MyCoolPage"
+             Title="MyCoolPage"
+             x:DataType="local:IMyCoolPageViewModel">
+    <Grid RowDefinitions="*,*">
+
+        <StackLayout>
+            <Label Text="{Binding Title}" />
+            <Label Text="{Binding Data}" />
+            <Button Text="LoadItems"
+                    Command="{Binding LoadDetailDataCommand}" />
+        </StackLayout>
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Items}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:IMyItemViewModel">
+                    <Border Margin="10">
+                        <StackLayout>
+                            <Label Text="{Binding Title}" />
+                            <Label Text="{Binding Number}" />
+                        </StackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+    </Grid>
+</ContentPage>
